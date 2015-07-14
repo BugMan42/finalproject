@@ -31,15 +31,11 @@ function AgendasController($scope, AuthService, agendasService, $state) {
 
    $scope.search = {};
 
-   agendasService.getAgendas().then(function(data){
-      console.log("yiiiha");
-      if (AuthService.getUser().data.user) {
+   agendasService.getAgendas()
+      .then(function(data){
          $scope.agendaslist = data.data;
-      }
-      else {
-         console.log("ni aqui");
+      }, function(error) {
          $state.go('signin', {}, {reload : true});
-      }
    });
 
 

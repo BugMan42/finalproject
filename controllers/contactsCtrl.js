@@ -29,12 +29,10 @@ function ContactsController($scope, contactsService, $state) {
 
    $scope.search = {};
 
-   contactsService.getContacts().then(function(data){
-      if (AuthService.getUser().data.user) {
-         $scope.contactslist = data.data;
-      }
-      else {
-         $state.go('signin', {}, {reload : true});
-      }
+   contactsService.getContacts().then(function(data) {
+      $scope.contactslist = data.data;
+   }, function(error) {
+      $state.go('signin', {}, {reload : true});
    });
+
 }
