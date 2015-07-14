@@ -5,13 +5,18 @@ function agendasService($http, $q, AuthService) {
 
 
    function getAgendas() {
-      var user = AuthService.getUser();
       var q = $q.defer();
-      $http.get(SERVER_URL + 'user/' + user.data.user._id + '/agendas').then(function(data){
-         q.resolve(data);
-      }, function(){
+      if (AuthService.getUser().data.user) {
+         var user = AuthService.getUser();
+         $http.get(SERVER_URL + 'user/' + user.data.user._id + '/agendas').then(function (data) {
+            q.resolve(data);
+         }, function () {
+            q.reject();
+         });
+      }
+      else {
          q.reject();
-      });
+      }
       return q.promise;
    }
 

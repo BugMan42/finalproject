@@ -18,16 +18,31 @@ function AgendasController($scope, AuthService, agendasService, $state) {
             name: $scope.formData.name
          };
       }
-      agendasService.addAgenda(newAgenda);
-      //$scope.formAgenda.$setPristine();
-      $state.go('agendas', {}, {reload : true});
+
+      if (AuthService.getUser().data.user) {
+         agendasService.addAgenda(newAgenda);
+         //$scope.formAgenda.$setPristine();
+         $state.go('agendas', {}, {reload : true});
+      }
+      else {
+         $state.go('signin', {}, {reload : true});
+      }
    };
 
    $scope.search = {};
 
    agendasService.getAgendas().then(function(data){
-      $scope.agendaslist = data.data;
+      console.log("yiiiha");
+      if (AuthService.getUser().data.user) {
+         $scope.agendaslist = data.data;
+      }
+      else {
+         console.log("ni aqui");
+         $state.go('signin', {}, {reload : true});
+      }
    });
+
+
 
 
 
