@@ -1,0 +1,15 @@
+<div class="col-lg-4">
+
+   <h2>Contact List</h2>
+
+   <div class="form-group">
+      <label for="search">Search</label>
+      <input type="text" ng-model="search.search" class="form-control" placeholder="Search" name="search" id="search">
+   </div>
+   <label>Contacts</label>
+
+   <div ng-repeat="contact in contactslist | orderBy:'-dueDate' | filter:search.search">
+      <a ui-sref="contacts.single({id: contact._id})"><h3>{{contact.name}}</h3></a>
+   </div>
+</div>
+<div ui-view class="col-lg-4"></div>

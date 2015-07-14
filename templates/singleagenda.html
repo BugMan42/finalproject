@@ -1,0 +1,37 @@
+<div>
+   <div>
+      <h3>Name: {{agenda.name}}</h3>
+   </div>
+
+   <div>
+      <h3 ng-if="agenda.company">Company: {{agenda.company}}</h3>
+   </div>
+   <div>
+      <button class="btn btn-danger" ng-click="deleteAgenda()">Delete Agenda</button>
+   </div>
+   <div>
+      <h3>Contacts</h3>
+   </div>
+
+   <div ng-repeat="contact in contactlist | orderBy:'-dueDate' | filter:search.search">
+      <span>Name: {{contact.name}}  phone: {{contact.phoneNumber}}</span>
+      <button class='btn btn-danger btn-group-xs' ng-click="deleteContactAgenda($index)" >Remove</button>
+   </div>
+
+   <form name="addContactForm" novalidate>
+      <div class="form-group" ng-class="{'has-error': addContactForm.title.$dirty && addContactForm.title.$invalid}">
+         <input type="number" ng-model="formData.phone" required class="form-control" placeholder="Contact phoneNumber" name="phone"
+                id="phone">
+         <ng-messages for="addContactForm.phone.$error" class="text-danger" ng-if="addContactForm.phone.$dirty">
+            <ng-message when="required">This field is required</ng-message>
+         </ng-messages>
+      </div>
+      <div>
+         <button class="btn btn-success btn-large" ng-disabled="taskForm.$invalid" ng-click="addPhone()">Add Contact
+         </button>
+      </div>
+   </form>
+</div>
+
+
+

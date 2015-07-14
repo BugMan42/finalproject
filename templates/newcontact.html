@@ -1,0 +1,53 @@
+<div class="col-lg-4">
+    <h2>Create new Contact</h2>
+
+    <form name="contactForm" novalidate>
+
+        <div class="form-group" ng-class="{'has-error': contactForm.name.$dirty && contactForm.name.$invalid}">
+            <label for="name">Name of the Contact</label>
+            <input type="text" ng-model="formData.name" required class="form-control" placeholder="Contact name" name="name"
+                   id="name">
+            <ng-messages for="contactForm.name.$error" class="text-danger" ng-if="contactForm.name.$dirty">
+                <ng-message when="required">This field is required</ng-message>
+            </ng-messages>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': contactForm.surname.$dirty && contactForm.surname.$invalid}">
+            <label for="name">Surname of the Contact</label>
+            <input type="text" ng-model="formData.surname" required class="form-control" placeholder="Contact Surname" name="surname"
+                   id="surname">
+            <ng-messages for="contactForm.surname.$error" class="text-danger" ng-if="contactForm.surname.$dirty">
+                <ng-message when="required">This field is required</ng-message>
+            </ng-messages>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': contactForm.phone.$dirty && contactForm.phone.$invalid}">
+            <label for="name">Phone of the Contact</label>
+            <input type="number" ng-model="formData.phone" required class="form-control" placeholder="Contact Phone" name="phone"
+                   id="phone">
+            <ng-messages for="contactForm.phone.$error" class="text-danger" ng-if="contactForm.phone.$dirty">
+                <ng-message when="required">This field is required</ng-message>
+            </ng-messages>
+        </div>
+
+        <div class="form-group">
+            <label for="company">email(optional)</label>
+            <input type="text" ng-model="formData.email" class="form-control" placeholder="Contact email" name="email"
+                   id="email">
+        </div>
+
+       <div class="form-group">
+          <label for="company">Name of the company of the Contact(optional)</label>
+          <input type="text" ng-model="formData.company" class="form-control" placeholder="Company name" name="nameCompany"
+                 id="company">
+       </div>
+
+        <div>
+            <button class="btn btn-success btn-large" ng-disabled="contactForm.$invalid" ng-click="createContact()">Create Contact
+            </button>
+        </div>
+        <div class="text-success">
+            <span>{{contact}}</span>
+        </div>
+    </form>
+</div>
